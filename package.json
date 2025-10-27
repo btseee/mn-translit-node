@@ -6,8 +6,14 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "clean": "node -e \"require('fs').rmSync('dist', {recursive: true, force: true})\"",
+    "prebuild": "npm run clean",
     "prepare": "npm run build",
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "test:compat": "node test/compatibility.js",
+    "test:all": "npm run test && npm run test:compat",
+    "test:versions": "npm run build && npm test",
+    "prepack": "npm run build"
   },
   "keywords": [
     "mongolian",
@@ -30,7 +36,15 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=12.0.0",
+    "node": ">=14.0.0",
     "npm": ">=6.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btseee/mn-translit-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/btseee/mn-translit-node/issues"
+  },
+  "homepage": "https://github.com/btseee/mn-translit-node#readme"
 }
