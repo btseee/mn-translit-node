@@ -98,12 +98,22 @@ for (const test of numberTests) {
   }
 }
 
-console.log('\n[Test 8] Edge Cases');
+console.log('\n[Test 8] Case Preservation (optional)');
+const cp = latinToCyrillic('Sain baina uu', { preserveCase: true });
+const cp2 = cyrillicToLatin('Монгол Улс', { preserveCase: true });
+console.log(`✓ latinToCyrillic preserveCase: "Sain baina uu" → "${cp}"`);
+console.log(`✓ cyrillicToLatin preserveCase: "Монгол Улс" → "${cp2}"`);
+if (cp[0] !== 'С' || cp2[0] !== 'M') {
+  console.error('✗ FAILED: preserveCase behavior');
+  process.exit(1);
+}
+
+console.log('\n[Test 9] Edge Cases');
 console.log(`✓ latinToCyrillic('') = "${latinToCyrillic('')}"`);
 console.log(`✓ cyrillicToLatin('') = "${cyrillicToLatin('')}"`);
 console.log(`✓ numberToMongolian(-5) = "${numberToMongolian(-5)}"`);
 
-console.log('\n[Test 9] Performance Check');
+console.log('\n[Test 10] Performance Check');
 const longText = 'mongol uls '.repeat(1000);
 const start = Date.now();
 const translitResult = latinToCyrillic(longText);
@@ -111,7 +121,7 @@ const elapsed = Date.now() - start;
 console.log(`✓ Transliterated ${longText.length} characters in ${elapsed}ms`);
 console.log(`✓ Performance: ${(longText.length / elapsed).toFixed(2)} chars/ms`);
 
-console.log('\n[Test 10] Type Safety');
+console.log('\n[Test 11] Type Safety');
 try {
   latinToCyrillic('test');
   cyrillicToLatin('тест');

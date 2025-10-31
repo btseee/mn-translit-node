@@ -1,4 +1,4 @@
-export { latinToCyrillic, cyrillicToLatin } from './translit';
+export { latinToCyrillic, cyrillicToLatin, type TransliterationOptions } from './translit';
 export { numberToMongolian } from './numbers';
 export { latinToCyrillicMap, cyrillicToLatinMap } from './maps';
 export { 

@@ -13,6 +13,7 @@ npm install mn-translit
 **Minimum Requirements:** Node.js ≥14.0.0, npm ≥6.0.0
 
 **Tested & Supported Versions:**
+
 - ✅ Node.js 14.x (LTS Fermium) - Minimum supported
 - ✅ Node.js 16.x (LTS Gallium)
 - ✅ Node.js 18.x (LTS Hydrogen)
@@ -20,6 +21,7 @@ npm install mn-translit
 - ✅ Node.js 22.x (Current)
 
 **Platform Support:**
+
 - ✅ Ubuntu / Linux
 - ✅ Windows
 - ✅ macOS (Intel & Apple Silicon)
@@ -34,12 +36,18 @@ const { latinToCyrillic, cyrillicToLatin, numberToMongolian } = require('mn-tran
 latinToCyrillic('sain baina uu');  // сайн байна уу
 cyrillicToLatin('монгол');         // mongol
 numberToMongolian(1000);           // мянга
+
+// Optional: preserve capitalization
+latinToCyrillic('Sain baina uu', { preserveCase: true }); // Сайн байна уу
 ```
 
 **TypeScript:**
 
 ```typescript
-import { latinToCyrillic, cyrillicToLatin, numberToMongolian } from 'mn-translit';
+import { latinToCyrillic, cyrillicToLatin, numberToMongolian, TransliterationOptions } from 'mn-translit';
+
+const opts: TransliterationOptions = { preserveCase: true };
+latinToCyrillic('Mongol', opts); // Монгол
 ```
 
 **ES Modules:**
@@ -88,8 +96,8 @@ if (checkMinimumNodeVersion(16)) {
 
 ### Transliteration Functions
 
-- `latinToCyrillic(text: string): string` - Convert Latin text to Cyrillic
-- `cyrillicToLatin(text: string): string` - Convert Cyrillic text to Latin
+- `latinToCyrillic(text: string, options?: { preserveCase?: boolean }): string` - Convert Latin text to Cyrillic
+- `cyrillicToLatin(text: string, options?: { preserveCase?: boolean }): string` - Convert Cyrillic text to Latin
 
 ### Number Conversion
 
